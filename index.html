@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XII TKJ 1 - Galeri Kelas</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0e0e0e;color:#fff}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:10;background:rgba(14,14,14,0.8);backdrop-filter:blur(12px);border-bottom:1px solid #222;padding:14px 0}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-weight:700;letter-spacing:1px} nav .logo span{color:#ffcc00}
+nav .menu{display:flex;gap:18px;font-size:0.85rem;color:#aaa} nav .menu a:hover{color:#ffcc00}
+
+/* HERO */
+.hero{text-align:center;padding:80px 20px 30px;background:radial-gradient(600px circle at 50% 0%,#2a2a2a,transparent)}
+.hero h1{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1} .hero h1 span{color:#ffcc00}
+.hero p{color:#888;margin-top:12px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:35px auto}
+.stat{background:#181818;border:1px solid #242424;border-radius:20px;padding:22px;text-align:center}
+.stat h2{font-size:2.4rem} .stat:nth-child(1) h2{color:#60a5fa} .stat:nth-child(2) h2{color:#f472b6} .stat:nth-child(3) h2{color:#ffcc00}
+.stat p{font-size:0.85rem;color:#999;margin-top:4px}
+@media(max-width:600px){.stats{grid-template-columns:1fr}}
+
+/* SECTION TITLE */
+.sec{margin:70px auto 0} .sec h2{font-size:1.6rem;margin-bottom:18px} .sec h2 span{color:#ffcc00} .sec h2 i{font-style:normal;color:#555;font-size:0.9rem;margin-left:8px}
+
+/* MEMBER */
+.tabs{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{background:#1b1b1b;border:1px solid #2a2a2a;color:#ccc;padding:7px 16px;border-radius:999px;cursor:pointer;font-size:0.85rem}
+.tabs button.active{background:#ffcc00;color:#000;font-weight:700;border-color:#ffcc00}
+.members{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.member{background:#161616;border:1px solid #222;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;transition:0.2s}
+.member:hover{border-color:#ffcc00;transform:translateY(-2px)}
+.avatar{width:36px;height:36px;border-radius:50%;background:#222;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0}
+.member.laki .avatar{color:#60a5fa;background:#1e293b} .member.perempuan .avatar{color:#f472b6;background:#2a1e2a}
+.member b{font-size:0.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* GALLERY */
+.filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.filter button{background:#1b1b1b;border:1px solid #2a2a2a;color:#ccc;padding:7px 16px;border-radius:999px;cursor:pointer;font-size:0.85rem}
+.filter button.active{background:#ffcc00;color:#000;font-weight:700}
+.gallery{columns:3;column-gap:14px} @media(max-width:900px){.gallery{columns:2}} @media(max-width:600px){.gallery{columns:1}}
+.card{break-inside:avoid;margin-bottom:14px;border-radius:18px;overflow:hidden;position:relative;background:#161616;cursor:pointer}
+.card img{width:100%;display:block;transition:0.5s} .card:hover img{transform:scale(1.06);filter:brightness(0.65)}
+.badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);padding:4px 10px;border-radius:999px;font-size:0.7rem;border:1px solid rgba(255,255,255,0.1)}
+.info{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent)}
+.info h3{font-size:0.9rem} .info p{font-size:0.7rem;color:#ffcc00}
+
+/* JADWAL */
+.jadwal-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:18px} @media(max-width:900px){.jadwal-grid{grid-template-columns:1fr}}
+.table-wrap{background:#161616;border:1px solid #222;border-radius:20px;overflow:hidden}
+.table-head{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
+.table-head h3{font-size:1rem} .table-head span{font-size:0.75rem;background:#222;padding:4px 10px;border-radius:999px;color:#aaa}
+table{width:100%;border-collapse:collapse;font-size:0.85rem}
+th{text-align:left;color:#777;padding:12px 16px;font-weight:600;background:#121212;font-size:0.75rem;letter-spacing:1px}
+td{padding:12px 16px;border-top:1px solid #1f1f1f;color:#ddd}
+td:first-child{font-family:'JetBrains Mono',monospace;color:#ffcc00;font-weight:500}
+.piket-hari{background:#1a1a1a;padding:14px 16px;border-top:1px solid #222}
+.piket-hari strong{color:#ffcc00;font-size:0.8rem} .piket-hari p{font-size:0.8rem;color:#aaa;margin-top:4px;line-height:1.6}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+.lightbox.active{display:flex} .lightbox img{max-width:92%;max-height:82vh;border-radius:16px}
+.lightbox .close{position:absolute;top:18px;right:26px;font-size:38px;cursor:pointer}
+
+footer{text-align:center;padding:50px 20px;color:#555;font-size:0.8rem;margin-top:60px;border-top:1px solid #1a1a1a}
+</style>
+</head>
+<body>
+
+<nav><div class="container"><div class="logo">XII TKJ 1 <span>• GALLERY</span></div><div class="menu"><a href="#anggota">Anggota</a><a href="#galeri">Galeri</a><a href="#jadwal">Jadwal</a></div></div></nav>
+
+<div class="hero">
+  <h1>WELCOME <span>KELAS</span><br>(X TJKT 2')</h1>
+  <p>26 Siswa • 1 Wali Kelas • Banyak Cerita</p>
+  <div class="container stats">
+    <div class="stat"><h2>16</h2><p>👦 Laki-laki</p></div>
+    <div class="stat"><h2>10</h2><p>👧 Perempuan</p></div>
+    <div class="stat"><h2>26</h2><p>🔥 Total Keluarga</p></div>
+  </div>
+</div>
+
+<div class="container sec" id="anggota">
+  <h2>Anggota <span>Kelas</span> <i>16 Laki + 10 Perempuan</i></h2>
+  <div class="tabs">
+    <button class="active" onclick="filterMember('all',this)">Semua (26)</button>
+    <button onclick="filterMember('laki',this)">Laki-laki (16)</button>
+    <button onclick="filterMember('perempuan',this)">Perempuan (10)</button>
+  </div>
+  <div class="members" id="memberList">
+    <!-- 34 LAKI - GANTI NAMA -->
+    <div class="member laki"><div class="avatar">R</div><b>REPALDI</b></div>
+    <div class="member laki"><div class="avatar">R</div><b>RAIDZ</b></div>
+    <div class="member laki"><div class="avatar">R</div><b>RIKO</b></div>
+    <div class="member laki"><div class="avatar">A</div><b>AFFAN</b></div>
+    <div class="member laki"><div class="avatar">I</div><b>ILHAM</b></div>
+    <div class="member laki"><div class="avatar">F</div><b>FADLI</b></div>
+    <div class="member laki"><div class="avatar">G</div><b>GILANG</b></div>
+    <div class="member laki"><div class="avatar">N</div><b>NAZAR</b></div>
+    <div class="member laki"><div class="avatar">D</div><b>DIKI</b></div>
+    <div class="member laki"><div class="avatar">A</div><b>AKBAR</b></div>
+    <div class="member laki"><div class="avatar">T</div><b>TRIA</b></div>
+    <div class="member laki"><div class="avatar">A</div><b>ADZRIL</b></div>
+    <div class="member laki"><div class="avatar">R</div><b>RISPAN</b></div>
+    <div class="member laki"><div class="avatar">R</div><b>RIFKI</b></div>
+    <div class="member laki"><div class="avatar">M</div><b>MISPANG</b></div>
+    <div class="member laki"><div class="avatar">F</div><b>FAREL</b></div>
+    <!-- duplikat otomatis pakai JS sampai 34 kalau belum diganti -->
+    <!-- 10 PEREMPUAN -->
+    <div class="member perempuan"><div class="avatar">N</div><b>NADA</b></div>
+    <div class="member perempuan"><div class="avatar">D</div><b>DEVITA</b></div>
+    <div class="member perempuan"><div class="avatar">N</div><b>NELIS</b></div>
+    <div class="member perempuan"><div class="avatar">R</div><b>RAHAYU</b></div>
+    <div class="member perempuan"><div class="avatar">D</div><b>DHEA</b></div>
+    <div class="member perempuan"><div class="avatar">K</div><b>KHARISMA</b></div>
+    <div class="member perempuan"><div class="avatar">A</div><b>ASYA</b></div>
+    <div class="member perempuan"><div class="avatar">A</div><b>ARINI</b></div>
+    <div class="member perempuan"><div class="avatar">L</div><b>LUSI</b></div>
+    <div class="member perempuan"><div class="avatar">A</div><b>AMEL</b></div>
+  </div>
+</div>
+
+<div class="container sec" id="galeri">
+  <h2>Galeri <span>15 Foto</span> <i>Kenangan Terbaik</i></h2>
+  <div class="filter">
+    <button class="active" onclick="filterImg('all',this)">Semua</button>
+    <button onclick="filterImg('kebersamaan',this)">Kebersamaan</button>
+    <button onclick="filterImg('GIRL',this)">GIRL</button>
+    <button onclick="filterImg('BOYS',this)">BOYS</button>
+  </div>
+  <div class="gallery" id="gallery">
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i154/N3a.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#potobarengwaliKelas</p></div></div>
+    <div class="card BOYS" onclick="openLb(this)"><span class="badge">BOYS</span><img src="https://c.termai.cc/i101/ae6j0f.jpg"><div class="info"><h3>fhoto</h3><p>#aalitanwebarudak</p></div></div>
+    <div class="card BOYS" onclick="openLb(this)"><span class="badge">BOYS</span><img src="https://c.termai.cc/i197/0nL.jpg"><div class="info"><h3>fhoto</h3><p>#potoheulasaetik</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i183/okG7.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#photobersama</p></div></div>
+    <div class="card GIRL" onclick="openLb(this)"><span class="badge">GIRL</span><img src="https://c.termai.cc/i141/UHs.jpg"><div class="info"><h3>fhoto</h3><p>#lomba17an</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i159/L7Ya.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#dilapang</p></div></div>
+    <div class="card BOYS" onclick="openLb(this)"><span class="badge">BOYS</span><img src="https://c.termai.cc/i121/fFtNZk.jpg"><div class="info"><h3>fhoto</h3><p>#barudak/mbg</p></div></div>
+    <div class="card GIRL" onclick="openLb(this)"><span class="badge">GIRL</span><img src="https://c.termai.cc/i198/k5fjL8.jpg"><div class="info"><h3>fhoto</h3><p>#17agustus</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i177/3n7ZMQz.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#Kejutan</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i104/Sdb.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#JamKosong</p></div></div>
+    <div class="card BOYS" onclick="openLb(this)"><span class="badge">BOYS</span><img src="https://c.termai.cc/i174/IP4P4I.jpg"><div class="info"><h3>fhoto</h3><p>#duarebujengkanangna</p></div></div>
+    <div class="card GIRL" onclick="openLb(this)"><span class="badge">GIRL</span><img src="https://c.termai.cc/i198/eytH.jpg"><div class="info"><h3>fhoto</h3><p>#deymbroou</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i110/hLdX4e3.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#smkpasundan</p></div></div>
+    <div class="card kebersamaan" onclick="openLb(this)"><span class="badge">Kebersamaan</span><img src="https://c.termai.cc/i158/0bxswa.jpg"><div class="info"><h3>Foto Kelas Lengkap</h3><p>#barudakgaul</p></div></div>
+    <div class="card BOYS" onclick="openLb(this)"><span class="badge">BOYS</span><img src="https://c.termai.cc/i169/v916.jpg"><div class="info"><h3>DEV/(@FALLZXML)</h3><p>JASA BIKIN WEB DM</p></div></div>
+  </div>
+</div>
+
+<div class="container sec jadwal-grid" id="jadwal">
+  <div class="table-wrap">
+    <div class="table-head"><h3>📚 Jadwal Pelajaran</h3><span>XII TKJ 1</span></div>
+    <table>
+      <tr><th>Hari</th><th>Mapel</th></tr>
+      <tr><td>Senin</td><td>Upacara, PAI, B.INDO, PJOK, MTK </td></tr>
+      <tr><td>Selasa</td><td>TJKT, INFORMATIKA, PPKN </td></tr>
+      <tr><td>Rabu</td><td>TJKT, SEJARAH, B.SUNDA, B.INDO </td></tr>
+      <tr><td>Kamis</td><td>CODING, SBK, IPAS</td></tr>
+      <tr><td>Jumat</td><td>PAI, TJKT, B.INDO</td></tr>
+      <tr><td>Sabtu</td><td>Pramuka, Eskul & Bersih-bersih</td></tr>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-head"><h3>🧹 Jadwal Piket Kelas</h3><span>44 Siswa</span></div>
+    <div class="piket-hari"><strong>SENIN</strong><p>AMEL, GILANG, NELIS, REPALDI, RIFKI</p></div>
+    <div class="piket-hari"><strong>SELASA</strong><p>NADA, RAHAYU, DEVITA, RIKO, MISPANH</p></div>
+    <div class="piket-hari"><strong>RABU</strong><p>ASYA, LUSI, FAREL, RISPAN</p></div>
+    <div class="piket-hari"><strong>KAMIS</strong><p>KHARISMA, RAIDZ, ARINI, ADZRIL, DIKI</p></div>
+    <div class="piket-hari"><strong>JUMAT</strong><p>AFAN, DHEA, FADLI, NAZAR, ILHAM</p></div>
+  </div>
+</div>
+
+<footer>DEV/@FALXML#ASIKSENDIRI#EXCITEDSENDIRI (jasa bikin web dm)</footer>
+
+<div class="lightbox" id="lb" onclick="closeLb()"><span class="close">&times;</span><img id="lb-img"></div>
+
+<script>
+function filterMember(cat,btn){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.member').forEach(m=>{m.style.display=(cat==='all'||m.classList.contains(cat))?'flex':'none'})
+}
+function filterImg(cat,btn){
+  document.querySelectorAll('.filter button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat==='all'||c.classList.contains(cat))?'block':'none'})
+}
+function openLb(card){document.getElementById('lb-img').src=card.querySelector('img').src;document.getElementById('lb').classList.add('active')}
+function closeLb(){document.getElementById('lb').classList.remove('active')}
+
+// Auto isi dummy nama biar genap 34 & 10 kalau kamu belum isi lengkap
+const list=document.getElementById('memberList');
+const countL=list.querySelectorAll('.laki').length;
+const countP=list.querySelectorAll('.perempuan').length;
+for(let i=countL+1;i<=16;i++){let d=document.createElement('div');d.className='member laki';d.innerHTML=`<div class="avatar">L${i}</div><b>Siswa Laki ${i}</b>`;list.appendChild(d)}
+for(let i=countP+1;i<=10;i++){let d=document.createElement('div');d.className='member perempuan';d.innerHTML=`<div class="avatar">P${i}</div><b>Siswi ${i}</b>`;list.appendChild(d)}
+</script>
+</body>
+</html>
